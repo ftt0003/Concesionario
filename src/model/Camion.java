@@ -21,12 +21,14 @@ public class Camion extends Vehiculo{
         }while (carga != null && i < carga.length);
             return false;
     }
+
     public boolean estaCargado(String id_coche){
         for(Coche c : carga){
             if(id_coche.equals(c.matricula))return true;
         }
         return false;
     }
+
     public boolean removeCar(String id_coche){
         int encontrado = 0;
         Coche[] aux = new Coche[MAX_COCHES];
@@ -50,6 +52,7 @@ public class Camion extends Vehiculo{
     public Coche[] getCarga(){
         return this.carga;
     }
+
     private String mostrarCarga(){
         String coches = "\n";
         int i = 0;
