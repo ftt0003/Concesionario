@@ -1,7 +1,4 @@
-import model.Camion;
-import model.Coche;
-import model.Garaje;
-import model.Vehiculo;
+import model.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +11,8 @@ public class Main {
         Garaje garaje = new Garaje();
         List<Vehiculo> coches = generarCoches();
 
-       //testFuncionamiento(coches,garaje,camion);
-       //testFuncionamientoMarcasEspecificas();
+       testFuncionamiento(coches,garaje,camion);
+       testFuncionamientoMarcasEspecificas();
 
        testRecogidaCochesEspecificos();
 
@@ -51,7 +48,7 @@ public class Main {
      * Carga multiples tipos de vehiculos y debe vaciar la carga para poder continuar.**/
     public static void testFuncionamientoMarcasEspecificas(){
         List<Vehiculo> coches = generarCoches();
-        Garaje garajeToyota = new Garaje("Toyota");
+        Garaje garajeToyota = new GarageEspecializado("Toyota");
         Camion camion = new Camion("5334654","Jose Manuel");
 
         mostrarVehiculos(coches);
@@ -63,7 +60,7 @@ public class Main {
         garajeToyota.recogidaVehiculos(camion);
 
         mostrarEstadoElementos(coches,garajeToyota,camion);
-        //List<String> cochesDes = new ArrayList<>();
+
         vaciarCarga(coches,camion);
 
         mostrarEstadoElementos(coches,garajeToyota,camion);
@@ -75,15 +72,10 @@ public class Main {
         vaciarCarga(coches,camion);
         mostrarEstadoElementos(coches,garajeToyota,camion);
 
-        //recogerCoches(coches,camion);
-        //garajeToyota.recogidaVehiculos(camion);
-        //mostrarEstadoElementos(coches,garajeToyota,camion);
-
-
     }
     public static void testRecogidaCochesEspecificos(){
         List<Vehiculo> coches = generarCoches();
-        Garaje garajeToyota = new Garaje("BMW");
+        Garaje garajeToyota = new GarageEspecializado("BMW");
         Camion camion = new Camion("5334654","Jose Manuel");
         mostrarVehiculos(coches);
         recogerCoches(coches,camion,"BMW");
@@ -128,7 +120,7 @@ public class Main {
         for(Vehiculo coche : coches){
             if(coche instanceof Coche){
                 if(((Coche) coche).getMarca().equals(brand)){
-                    camion.addCar((Coche) coche);
+                    camion.addCarByBrand((Coche) coche,brand);
                 }
             }
         }
