@@ -26,12 +26,26 @@ public class Camion extends Vehiculo{
         }while (carga != null && i < carga.length);
             return false;
     }
+    public boolean addCarByBrand(Coche coche,String brand){
+        int i = 0;
+        if (!brand.equals(coche.getMarca())) return false;
+        do {
+
+            if(carga[i] == null){
+                carga[i] = coche;
+                return true;
+            }
+            i++;
+        }while (i < carga.length);
+        return false;
+    }
 
     /** Evalua si un coche se encuentra entre la carga de el camion
      * @param id_coche> corresponde con la matricula de el vehiculo
      * @return boolean -> True: encontado. False: no encontrado.  **/
     public boolean estaCargado(String id_coche){
         for(Coche c : carga){
+            if (c == null) continue;
             if(id_coche.equals(c.matricula))return true;
         }
         return false;

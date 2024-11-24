@@ -14,8 +14,10 @@ public class Main {
         Garaje garaje = new Garaje();
         List<Vehiculo> coches = generarCoches();
 
-       testFuncionamiento(coches,garaje,camion);
-       testFuncionamientoMarcasEspecificas();
+       //testFuncionamiento(coches,garaje,camion);
+       //testFuncionamientoMarcasEspecificas();
+
+       testRecogidaCochesEspecificos();
 
     }
 
@@ -44,7 +46,9 @@ public class Main {
         mostrarEstadoElementos(coches,garaje,camion);
 
     }
-    /** **/
+    /** Internamente genrea los objetos necesarios para realizar las pruebas.
+     * Intentara añadir de la carga de un camion solo coches de la marca especifica al garaje.
+     * Carga multiples tipos de vehiculos y debe vaciar la carga para poder continuar.**/
     public static void testFuncionamientoMarcasEspecificas(){
         List<Vehiculo> coches = generarCoches();
         Garaje garajeToyota = new Garaje("Toyota");
@@ -55,8 +59,49 @@ public class Main {
         garajeToyota.recogidaVehiculos(camion);
 
         mostrarEstadoElementos(coches,garajeToyota,camion);
+        recogerCoches(coches,camion);
+        garajeToyota.recogidaVehiculos(camion);
+
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+        //List<String> cochesDes = new ArrayList<>();
+        vaciarCarga(coches,camion);
+
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+
+        recogerCoches(coches,camion);
+        garajeToyota.recogidaVehiculos(camion);
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+
+        vaciarCarga(coches,camion);
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+
+        //recogerCoches(coches,camion);
+        //garajeToyota.recogidaVehiculos(camion);
+        //mostrarEstadoElementos(coches,garajeToyota,camion);
+
 
     }
+    public static void testRecogidaCochesEspecificos(){
+        List<Vehiculo> coches = generarCoches();
+        Garaje garajeToyota = new Garaje("BMW");
+        Camion camion = new Camion("5334654","Jose Manuel");
+        mostrarVehiculos(coches);
+        recogerCoches(coches,camion,"BMW");
+        garajeToyota.recogidaVehiculos(camion);
+
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+        recogerCoches(coches,camion,"BMW");
+        garajeToyota.recogidaVehiculos(camion);
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+    }
+    public  static  void vaciarCarga(List<Vehiculo> coches, Camion camion){
+        for(Coche coche : camion.getCarga()){
+            if(coche == null)continue;
+            coches.addLast(coche);
+            camion.removeCar(coche.getMatricula());
+        }
+    }
+
     /**
      * @param coches Conjunto de coches pendientes de recogida.
      * @param camion Camion encargado de la recogida de los vehiculos, puede ir cargado o descargado.
@@ -77,6 +122,17 @@ public class Main {
         for(int i = 0; i < camion.getCarga().length && i < coches.size();i++){
             camion.addCar((Coche) coches.get(i));
         }
+        coches.removeAll(Arrays.asList(camion.getCarga()));
+    }
+    public static void recogerCoches(List<Vehiculo> coches,Camion camion, String brand){
+        for(Vehiculo coche : coches){
+            if(coche instanceof Coche){
+                if(((Coche) coche).getMarca().equals(brand)){
+                    camion.addCar((Coche) coche);
+                }
+            }
+        }
+
         coches.removeAll(Arrays.asList(camion.getCarga()));
     }
 
@@ -108,6 +164,7 @@ public class Main {
         coches.add(new Coche("4030 NSV","Barbara","Nissab","GTR"));
         coches.add(new Coche("9801 CCC","Beatriz","Tesla","Lavadora"));
         coches.add(new Coche("7891 RPK","JoseLu","Tesla","Cybertruk"));
+        coches.add(new Coche("7207 ABB","Joan","BMW","Javac"));
         return coches;
     }
 }

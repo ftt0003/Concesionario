@@ -32,6 +32,7 @@ public class Garaje {
         List<String> cochesGuardados = new ArrayList<>();
 
         for(Coche c : camion.getCarga()){
+            if (c == null)continue;
             if(ESPACIO_OCUPADO < PLAZAS_DISPONIBLES && c.getMarca().equals(marcaEspecialidad)){
                 cochesAlmacen.add(c);
                 cochesGuardados.add(c.getMatricula());
