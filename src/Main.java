@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        Camion camion = new Camion("5634654","JuanitoJuan");
+        Camion camion = new Camion("5634654","Ramon");
         Garaje garaje = new Garaje();
         List<Vehiculo> coches = generarCoches();
 
@@ -97,7 +97,7 @@ public class Main {
     public static List<Vehiculo> generarCoches(){
         List<Vehiculo> coches = new ArrayList<>();
 
-        coches.add(new Coche("2810 BGY","Pepe","Toyota","Corla"));
+        coches.add(new Coche("2810 BGY","Pepe","Toyota","Corola"));
         coches.add(new Coche("4458 KVS","Lope","Toyota","Avensis"));
         coches.add(new Coche("8515 UNN","Oscar","Mecedes","Cherry"));
         coches.add(new Coche("8746 MDM","Simon","BMW","Java"));
