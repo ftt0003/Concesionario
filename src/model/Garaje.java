@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Garaje {
-    public  int PLAZAS_DISPONIBLES = 10;
+
+    public  static final int PLAZAS_DISPONIBLES = 10;
     public  int ESPACIO_OCUPADO = 0;
 
     private List<Coche> cochesAlmacen;
@@ -76,7 +77,7 @@ public class Garaje {
     }
 
 
-    public String obtenerVehiculosGaraje(){
+    private String obtenerVehiculosGaraje(){
         String coches = "";
         for(Coche c : cochesAlmacen){
             coches += c.toString()+"\n";

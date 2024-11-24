@@ -44,11 +44,11 @@ public class Main {
         mostrarEstadoElementos(coches,garaje,camion);
 
     }
-    /**TODO --> Reparar funcionamiento cuando debemos solo descargar vehiculos de una marca en especifico**/
+    /** **/
     public static void testFuncionamientoMarcasEspecificas(){
         List<Vehiculo> coches = generarCoches();
         Garaje garajeToyota = new Garaje("Toyota");
-        Camion camion = new Camion("5634654","JuanitoJuan");
+        Camion camion = new Camion("5334654","Jose Manuel");
 
         mostrarVehiculos(coches);
         recogerCoches(coches,camion);
