@@ -1,8 +1,10 @@
 package model;
 
 public abstract class Vehiculo{
+
     protected String matricula;
     protected String propietario;
+
     public Vehiculo(){}
 
     public Vehiculo(String matricula,String propietario){

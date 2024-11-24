@@ -15,8 +15,11 @@ public class Main {
         List<Vehiculo> coches = generarCoches();
 
        testFuncionamiento(coches,garaje,camion);
+       testFuncionamientoMarcasEspecificas();
 
     }
+
+    /*****/
     public static void testFuncionamiento( List<Vehiculo> coches,Garaje garaje,Camion camion){
         System.out.println("\n");
         mostrarVehiculos(coches);
@@ -41,21 +44,45 @@ public class Main {
         mostrarEstadoElementos(coches,garaje,camion);
 
     }
+    /**TODO --> Reparar funcionamiento cuando debemos solo descargar vehiculos de una marca en especifico**/
+    public static void testFuncionamientoMarcasEspecificas(){
+        List<Vehiculo> coches = generarCoches();
+        Garaje garajeToyota = new Garaje("Toyota");
+        Camion camion = new Camion("5634654","JuanitoJuan");
+
+        mostrarVehiculos(coches);
+        recogerCoches(coches,camion);
+        garajeToyota.recogidaVehiculos(camion);
+
+        mostrarEstadoElementos(coches,garajeToyota,camion);
+
+    }
+    /**
+     * @param coches Conjunto de coches pendientes de recogida.
+     * @param camion Camion encargado de la recogida de los vehiculos, puede ir cargado o descargado.
+     * @param garaje Garaje donde se van a almacenar los vehiculos, con un numero de plazas disponibles
+     *               y coches ya guardados.**/
     public static void mostrarEstadoElementos(List<Vehiculo> coches,Garaje garaje,Camion camion){
         mostrarVehiculos(coches);
         System.out.println("\n\n"+camion);
         System.out.println("\n\n"+garaje);
     }
 
-    public static boolean recogerCoches(List<Vehiculo> coches,Camion camion){
+    /**
+     * @param coches  Conjunto de coches que estan por recoger
+     * @param camion  Camion encargado de recoger los coches.
+     **/
+    public static void recogerCoches(List<Vehiculo> coches,Camion camion){
+
         for(int i = 0; i < camion.getCarga().length && i < coches.size();i++){
             camion.addCar((Coche) coches.get(i));
         }
         coches.removeAll(Arrays.asList(camion.getCarga()));
-
-        return true;
     }
 
+    /**
+     * Mostrara los vehiculos de la lista de vehiculos disponibles previos a recogida o almacenage
+     **/
     public static void mostrarVehiculos(List<Vehiculo> vehiculos){
         System.out.println("\n-------------------------VEHICULOS DISPONIBLES----------------------------");
         for (Vehiculo c : vehiculos){
@@ -64,6 +91,9 @@ public class Main {
         System.out.println("--------------------------------------------------------------------------");
     }
 
+    /**
+     * @return List[Vehiculo]
+     **/
     public static List<Vehiculo> generarCoches(){
         List<Vehiculo> coches = new ArrayList<>();
 

@@ -12,6 +12,9 @@ public class Coche extends Vehiculo{
         this.marca = marca;
         this.modelo = modelo;
     }
+    public String getMarca(){
+        return this.marca;
+    }
 
     @Override
     public String toString() {

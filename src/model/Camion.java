@@ -1,14 +1,19 @@
 package model;
 
 public class Camion extends Vehiculo{
+    /**@Atributos **/
     public static final int MAX_COCHES = 4;
     Coche[] carga;
 
+    /**@Constructor **/
     public Camion(String matricula,String propietario){
         super(matricula,propietario);
         this.carga = new Coche[MAX_COCHES];
     }
 
+    /**Anyade un Coche a la carga de el Camion
+     * @param coche typeOf(Coche)
+     * @return boolean **/
     public boolean addCar(Coche coche){
         int i = 0;
         do {
@@ -22,6 +27,9 @@ public class Camion extends Vehiculo{
             return false;
     }
 
+    /** Evalua si un coche se encuentra entre la carga de el camion
+     * @param id_coche> corresponde con la matricula de el vehiculo
+     * @return boolean -> True: encontado. False: no encontrado.  **/
     public boolean estaCargado(String id_coche){
         for(Coche c : carga){
             if(id_coche.equals(c.matricula))return true;
@@ -29,13 +37,15 @@ public class Camion extends Vehiculo{
         return false;
     }
 
+    /****/
     public boolean removeCar(String id_coche){
         int encontrado = 0;
         Coche[] aux = new Coche[MAX_COCHES];
 
         if(estaCargado(id_coche)){
             for (int i = 0; i < MAX_COCHES; i++){
-                if(carga[i] == null)break;
+                if(carga[i] == null)continue;
+
                 if(carga[i].matricula.equals(id_coche)){
                     encontrado = i;
                     continue;
@@ -49,10 +59,12 @@ public class Camion extends Vehiculo{
         return false;
     }
 
+    /****/
     public Coche[] getCarga(){
         return this.carga;
     }
 
+    /****/
     private String mostrarCarga(){
         String coches = "\n";
         int i = 0;
@@ -64,7 +76,7 @@ public class Camion extends Vehiculo{
         return coches;
     }
 
-
+    /****/
     @Override
     public String toString() {
         return "---------------------------ESTADO ACTUAL DE EL CAMION-----------------------------------\n"+
